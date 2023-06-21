@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {}
+    {
+     m_Rigidbody = GetComponent<Rigidbody>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,36 +40,29 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Input.GetKey("d"))
-            m_Rigidbody.AddForce(speed * Time.deltaTime, 0, 0);
-        if (Input.GetKey("a"))
-            m_Rigidbody.AddForce(-speed * Time.deltaTime, 0, 0);
-        if (Input.GetKey("w"))
-            m_Rigidbody.AddForce(0, 0, speed * Time.deltaTime);
-        if (Input.GetKey("s"))
-            m_Rigidbody.AddForce(0, 0, -speed * Time.deltaTime);
+         float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        m_Rigidbody.velocity = movement * speed * Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Trap")
         {
-            health -= 1;
-            SetHealthText();
+          health--;
+            Debug.Log("Health: " + health);
         }
         if (other.gameObject.tag == "Pickup")
         {
-            score += 1;
-            SetScoreText();
+           score++;
+            Debug.Log("Score: " + score);
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "Goal")
         {
-            WinLoseText.text = "You Win!";
-            WinLoseText.color = Color.black; 
-            WinLoseImage.color = Color.green;
-            WinLoseImage.gameObject.SetActive(true);
-            StartCoroutine(LoadScene(3));
+        Debug.Log("You win!");
         }
     }
 
