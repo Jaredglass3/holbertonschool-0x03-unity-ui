@@ -1017,9 +1017,9 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 0}
   speed: 700
   scoreText: {fileID: 676620772}
-  healthText: {fileID: 0}
-  WinLoseImage: {fileID: 0}
-  WinLoseText: {fileID: 0}
+  healthText: {fileID: 1445686900}
+  WinLoseImage: {fileID: 297214345}
+  WinLoseText: {fileID: 1029914061}
 --- !u!1001 &189340941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5415,7 +5415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 320.00003, y: -137.55563}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445686900
