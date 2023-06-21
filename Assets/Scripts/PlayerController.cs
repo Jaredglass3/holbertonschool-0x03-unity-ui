@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     m_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();
+        SetScoreText(); // Call the method to initialize the score text
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
         if (health == 0)
         {
             WinLoseText.text = "Game Over!";
-            WinLoseText.color = Color.white; 
+            WinLoseText.color = Color.white;
             WinLoseImage.color = Color.red;
             WinLoseImage.gameObject.SetActive(true);
             StartCoroutine(LoadScene(3));
@@ -38,9 +39,10 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("menu");
         }
     }
+
     void FixedUpdate()
     {
-         float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
@@ -49,20 +51,26 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Trap")
+        if (other.gameObject.CompareTag("Trap"))
         {
-          health--;
-            Debug.Log("Health: " + health);
+            health--;
+            SetHealthText();
         }
-        if (other.gameObject.tag == "Pickup")
+
+        if (other.gameObject.CompareTag("Pickup"))
         {
-           score++;
-            Debug.Log("Score: " + score);
+            score++;
+            SetScoreText();
             Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "Goal")
+
+        if (other.gameObject.CompareTag("Goal"))
         {
-        Debug.Log("You win!");
+            WinLoseText.text = "You Win!";
+            WinLoseText.color = Color.black;
+            WinLoseImage.color = Color.green;
+            WinLoseImage.gameObject.SetActive(true);
+            StartCoroutine(LoadScene(3));
         }
     }
 
