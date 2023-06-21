@@ -15,23 +15,18 @@ public class PlayerController : MonoBehaviour
     public Image WinLoseImage;
     public Text WinLoseText;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        SetScoreText(); // Call the method to initialize the score text
+        SetScoreText();
+        SetHealthText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health == 0)
         {
-            WinLoseText.text = "Game Over!";
-            WinLoseText.color = Color.white;
-            WinLoseImage.color = Color.red;
-            WinLoseImage.gameObject.SetActive(true);
-            StartCoroutine(LoadScene(3));
+            GameOver();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -82,6 +77,15 @@ public class PlayerController : MonoBehaviour
     void SetHealthText()
     {
         healthText.text = "Health: " + health;
+    }
+
+    void GameOver()
+    {
+        WinLoseText.text = "Game Over!";
+        WinLoseText.color = Color.white;
+        WinLoseImage.color = Color.red;
+        WinLoseImage.gameObject.SetActive(true);
+        StartCoroutine(LoadScene(3));
     }
 
     IEnumerator LoadScene(float seconds)
