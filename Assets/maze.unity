@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 0}
   speed: 700
   scoreText: {fileID: 676620772}
-  healthText: {fileID: 0}
+  healthText: {fileID: 922065341}
   WinLoseImage: {fileID: 0}
   WinLoseText: {fileID: 0}
 --- !u!1001 &189340941
